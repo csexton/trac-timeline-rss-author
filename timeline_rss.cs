@@ -20,15 +20,22 @@
   /if ?><?cs
   each:event = timeline.events ?>
    <item>
-    <title><?cs var:event.title ?></title><?cs
-    if:event.author.email ?>
-     <author><?cs var:event.author.email ?></author><?cs
-    /if ?>
-    <pubDate><?cs var:event.date ?></pubDate>
+    <title><?cs var:event.title ?></title>
+        <author><?cs var:event.author ?></author>
+        <pubDate><?cs var:event.date ?></pubDate>
     <link><?cs var:event.href ?></link>
     <guid isPermaLink="false"><?cs var:event.href ?>/<?cs 
      var:event.dateuid ?></guid>
-    <description><?cs var:event.message ?></description>
+    <description><?cs
+    if:event.author.email ?>
+     &lt;i&gt;Author: &lt;a href="mailto:<?cs var:event.author.email ?>"&gt;<?cs var:event.author ?>&lt;a&gt;&lt;i&gt;&lt;br&gt;
+         &lt;br&gt;
+         <?cs
+     else ?>
+     &lt;i&gt;By: <?cs var:event.author ?>&lt;i&gt;&lt;br&gt;
+         <?cs
+    /if ?>
+        <?cs var:event.message ?></description>
     <category><?cs var:event.kind ?></category>
    </item><?cs
   /each ?>
